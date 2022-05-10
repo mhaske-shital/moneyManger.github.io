@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 class="alert alert-secondary text-center text-dark p-3">Money Tracker</h1>
+    <!-- container starts here -->
+    <div class="container-fluid">
+        <!-- row starts here -->
+        <div class="row">
+
+            <!-- col starts here -->
+            <div class="col-sm-4">
+                <!-- card starts here -->
+                <div class="card border-danger">
+                    <!-- card-header here -->
+                    <div class="card-header bg-danger text-light">Salary</div>
+                    <!-- card-body starts here -->
+                    <div class="card-body">
+                        <input type="text" class="form-control border-danger" placeholder="Enter Borrowings" id="borrowing" required>
+                        <br><br>
+                        <input type="number" class="form-control border-danger" placeholder="Enter Salary" id="num" required>
+                        <br><br>
+                        <button onclick="addSalary()" class="btn btn-outline-danger">Add</button>
+                        <!-- card-body ends here -->
+                    </div>
+                    <!-- card ends here -->
+                </div>
+                <!-- col ends here -->
+            </div>
+
+            <!-- col starts here -->
+            <div class="col-sm-4">
+                <!-- card starts here -->
+                <div class="card border-success">
+                    <!-- card-header here -->
+                    <div class="card-header bg-success text-light">Expences</div>
+                    <!-- card-body starts here -->
+                    <div class="card-body">
+                        <input type="text" class="form-control border-success" placeholder="Enter Item" id="item" required>
+                        <br><br>
+                        <input type="number" class="form-control border-success" placeholder="Enter Item Cost" id="num1" required>
+                        <br><br>
+                        <button onclick="addExpences()" class="btn btn-outline-success">Add Expences</button>
+                        <!-- card-body ends here -->
+                    </div>
+                    <!-- card ends here -->
+                </div>
+                <!-- col ends here -->
+            </div>
+
+            <!-- col starts here -->
+            <div class="col-sm-4">
+                <!-- card starts here -->
+                <div class="card border-primary">
+                    <!-- card-header here -->
+                    <div class="card-header bg-primary text-light">Expences List</div>
+                    <!-- card-body starts here -->
+                    <div class="card-body" id="itemList">
+                        <table class="table table-bordered border-primary table-primary">
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Item Price</th>
+                            </tr>
+                        </table>
+                        <!-- card-body ends here -->
+                    </div>
+                    <!-- card-footer here -->
+                    <div class="card-footer bg-primary text-light">Remaining Amount : <span id="bal"></span></div>
+                    <!-- card ends here -->
+                </div>
+                <!-- col ends here -->
+            </div>
+
+            <!-- row ends here -->
+        </div>
+        <!-- container ends here -->
+    </div>
+
+    <!-- script -->
+    <script>
+        var inputNum = document.getElementById("num");
+        var inputItem = document.getElementById("item");
+        var inputCost = document.getElementById("num1");
+        var inputBorrow = document.getElementById("borrowing");
+
+        var mySalary = 0;
+        var balance = 0;
+        function addSalary() {
+            mySalary = + inputNum.value;
+            myBorrow = inputBorrow.value;
+            balance += mySalary;
+            document.getElementById("bal").innerHTML = mySalary;
+            document.getElementById("borrowing").innerHTML = myBorrow;
+            document.getElementById("num").value = "";
+            document.getElementById("borrowing").value = "";
+
+            document.getElementById("itemList").innerHTML += `<table class="table table-bodered border-primary"><tr><td>${myBorrow}</td><td>${mySalary}</td></tr></table>`;
+        }
+        function addExpences() {
+            itemName = inputItem.value;
+            itemCost = + inputCost.value;
+
+            balance -= itemCost;
+            document.getElementById("bal").innerHTML = balance;
+            document.getElementById("item").value = "";
+            document.getElementById("num1").value = "";
+
+            document.getElementById("itemList").innerHTML += `<table class="table table-bodered border-primary"><tr><td>${itemName}</td><td>${itemCost}</td></tr></table>`;
+        }
+    </script>
+</body>
+</html>
